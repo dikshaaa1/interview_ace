@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Interview | Interview Ace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<nav class="dock-nav">
+  <div class="dock-logo"><a href="/index.html">Interview<span>Ace</span></a></div>
+  <a href="/dashboard.html" class="dock-link" id="navDashboard" style="display:none">Dashboard</a>
+  <a href="/login.html" class="dock-link" id="navLogin">Sign In</a>
+  <button id="logoutBtn" class="dock-link" style="display:none;background:none;border:none;font:inherit;cursor:pointer;color:var(--muted)" onclick="Auth.logout()">Logout</button>
+</nav>
+
+<div class="page-shell">
+  <div class="container-md">
+
+    <div class="app-hero">
+      <div class="label-tag" style="margin-bottom:0.75rem">New Session</div>
+      <h1>Set Up Your Interview</h1>
+      <p>Upload your CV and the job description. We'll generate tailored questions in seconds.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:1.25rem">
+      <div class="label-tag" style="margin-bottom:1rem">Resume / CV</div>
+      <div class="upload-zone" id="resumeZone">
+        <div class="upload-icon">&#128196;</div>
+        <div class="upload-title">Drop your CV here</div>
+        <div class="upload-sub">PDF or TXT, click to browse</div>
+        <input type="file" id="resumeInput" accept=".pdf,.txt" />
+        <div id="resumeStatus" style="margin-top:0.75rem;font-size:0.85rem;color:var(--primary);font-weight:500"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:1.25rem">
+      <div class="label-tag" style="margin-bottom:1rem">Job Description</div>
+      <div class="upload-zone" id="jdZone">
+        <div class="upload-icon">&#128188;</div>
+        <div class="upload-title">Drop the JD here</div>
+        <div class="upload-sub">PDF or TXT, click to browse</div>
+        <input type="file" id="jdInput" accept=".pdf,.txt" />
+        <div id="jdStatus" style="margin-top:0.75rem;font-size:0.85rem;color:var(--primary);font-weight:500"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:1.5rem">
+      <div class="label-tag" style="margin-bottom:1rem">Interview Settings</div>
+      <div class="config-grid">
+        <div class="form-group">
+          <label class="form-label" for="jobTitleInput">Job Title</label>
+          <input class="form-input" id="jobTitleInput" type="text" placeholder="e.g. Senior Software Engineer" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="numQuestionsInput">Number of Questions</label>
+          <select class="form-input" id="numQuestionsInput">
+            <option value="5">5 questions</option>
+            <option value="8" selected>8 questions</option>
+            <option value="10">10 questions</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-lg" id="startBtn" disabled style="width:100%">
+      <div class="spinner" id="startSpinner"></div>
+      <span id="startBtnText">Generate Questions &amp; Begin &rarr;</span>
+    </button>
+
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="/config.js"></script>
+<script src="/state.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/upload.js"></script>
+<script>
+  (function () {
+    const navDashboard = document.getElementById('navDashboard');
+    const navLogin     = document.getElementById('navLogin');
+    const logoutBtn    = document.getElementById('logoutBtn');
+
+    if (Auth.isLoggedIn()) {
+      navDashboard.style.display = '';
+      navLogin.style.display     = 'none';
+      logoutBtn.style.display    = '';
+    }
+  })();
+</script>
+</body>
+</html>

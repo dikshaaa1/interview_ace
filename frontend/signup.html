@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account | Interview Ace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<nav class="dock-nav">
+  <div class="dock-logo"><a href="/index.html">Interview<span>Ace</span></a></div>
+  <a href="/index.html" class="dock-link">Home</a>
+  <a href="/login.html" class="dock-link">Sign In</a>
+</nav>
+
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="auth-logo">Interview<span>Ace</span></div>
+
+    <h1 class="auth-title">Create your account</h1>
+    <p class="auth-sub">Start practicing interviews with AI feedback</p>
+
+    <form class="auth-form" id="signupForm" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="name">Full Name</label>
+        <input class="form-input" id="name" type="text" placeholder="Alex Johnson" autocomplete="name" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="email">Email</label>
+        <input class="form-input" id="email" type="email" placeholder="you@example.com" autocomplete="email" required />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="password">Password</label>
+        <input class="form-input" id="password" type="password" placeholder="Min 8 characters" autocomplete="new-password" required />
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%;margin-top:0.5rem" id="submitBtn">
+        <div class="spinner" id="spinner"></div>
+        <span id="btnText">Create Account &rarr;</span>
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      Already have an account? <a href="/login.html">Sign in</a>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="/config.js"></script>
+<script src="/js/auth.js"></script>
+<script>
+  (function () {
+    if (Auth.isLoggedIn()) { window.location.href = '/dashboard.html'; return; }
+
+    const form    = document.getElementById('signupForm');
+    const btn     = document.getElementById('submitBtn');
+    const spinner = document.getElementById('spinner');
+    const btnText = document.getElementById('btnText');
+    const toast   = document.getElementById('toast');
+
+    function showToast(msg, type) {
+      toast.textContent = msg;
+      toast.className   = 'toast ' + (type || '') + ' show';
+      clearTimeout(toast._t);
+      toast._t = setTimeout(() => toast.classList.remove('show'), 4500);
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const name     = document.getElementById('name').value.trim();
+      const email    = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+
+      if (!email || !password) { showToast('Email and password required', 'error'); return; }
+      if (password.length < 8) { showToast('Password must be at least 8 characters', 'error'); return; }
+
+      btn.disabled          = true;
+      spinner.style.display = 'block';
+      btnText.style.display = 'none';
+
+      try {
+        const res = await fetch(`${API_BASE}/api/auth/register`, {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify({ email, password, name }),
+        });
+
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.detail || 'Registration failed');
+
+        Auth.setSession(data.access_token, data.user);
+        window.location.href = '/dashboard.html';
+      } catch (err) {
+        showToast(err.message, 'error');
+        btn.disabled          = false;
+        spinner.style.display = 'none';
+        btnText.style.display = '';
+      }
+    });
+  })();
+</script>
+</body>
+</html>

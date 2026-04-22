@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interview Ace: Practice Interviews with AI Feedback</title>
+  <meta name="description" content="Upload your CV, answer real interview questions with your voice, and get deep AI feedback on every answer. Serious prep for serious candidates." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<div class="spotlight-layer" id="spotlight"></div>
+<div class="dot-pattern"></div>
+
+<nav class="dock-nav">
+  <div class="dock-logo">Interview<span>Ace</span></div>
+  <a href="/index.html" class="dock-link active">Home</a>
+  <a href="/dashboard.html" class="dock-link" id="navDashboard" style="display:none">Dashboard</a>
+  <a href="/login.html" class="dock-link" id="navLogin">Sign In</a>
+  <a href="/signup.html" class="dock-cta" id="navSignup">Get Started</a>
+  <button class="dock-link" id="navLogout" style="display:none;background:none;border:none;font:inherit;cursor:pointer" onclick="Auth.logout()">Logout</button>
+</nav>
+
+<!-- ======================= HERO ======================= -->
+<section class="hero">
+  <div class="hero-badge">
+    <span class="hero-badge-dot"></span>
+    AI-Powered Interview Coaching
+  </div>
+
+  <h1 class="hero-title">
+    Stop rehearsing.<br />
+    <span class="text-gradient">Start performing.</span>
+  </h1>
+
+  <p class="hero-sub">
+    Upload your CV and the job description. Answer real questions with your voice. Get honest, detailed AI feedback on every single answer.
+  </p>
+
+  <div class="hero-actions">
+    <a href="/signup.html" class="btn btn-primary btn-lg btn-shimmer">Start Free &rarr;</a>
+    <a href="#how-it-works" class="btn btn-ghost btn-lg">See How It Works</a>
+  </div>
+
+  <div class="hero-inline-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-val">20 min</span>
+      <span class="hero-stat-label">per session</span>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <span class="hero-stat-val">8 types</span>
+      <span class="hero-stat-label">of questions</span>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <span class="hero-stat-val">1 call</span>
+      <span class="hero-stat-label">batch AI evaluation</span>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-stat">
+      <span class="hero-stat-val">free</span>
+      <span class="hero-stat-label">to start</span>
+    </div>
+  </div>
+
+  <div class="hero-preview animate-float">
+    <div class="preview-glow"></div>
+    <div class="preview-shell">
+      <div class="preview-titlebar">
+        <div class="preview-dot" style="background:#f87171"></div>
+        <div class="preview-dot" style="background:#fbbf24"></div>
+        <div class="preview-dot" style="background:#4ade80"></div>
+        <span style="margin-left:0.75rem;font-size:0.72rem;color:var(--muted);font-family:var(--font-mono)">interview-ace / results</span>
+      </div>
+      <div class="preview-body">
+        <div class="preview-panel">
+          <div class="preview-label">Overall Score</div>
+          <div class="preview-score-large">8.6</div>
+          <div class="preview-score-sub">out of 10 &middot; Grade B</div>
+        </div>
+        <div class="preview-panel">
+          <div class="preview-label">Skill Breakdown</div>
+          <div class="preview-bars">
+            <div class="preview-bar-row">
+              <span class="preview-bar-name">Communication</span>
+              <div class="preview-bar-track"><div class="preview-bar-fill" style="width:90%"></div></div>
+              <span class="preview-bar-val">9.0</span>
+            </div>
+            <div class="preview-bar-row">
+              <span class="preview-bar-name">Technical</span>
+              <div class="preview-bar-track"><div class="preview-bar-fill" style="width:78%"></div></div>
+              <span class="preview-bar-val">7.8</span>
+            </div>
+            <div class="preview-bar-row">
+              <span class="preview-bar-name">STAR Method</span>
+              <div class="preview-bar-track"><div class="preview-bar-fill" style="width:84%"></div></div>
+              <span class="preview-bar-val">8.4</span>
+            </div>
+            <div class="preview-bar-row">
+              <span class="preview-bar-name">Clarity</span>
+              <div class="preview-bar-track"><div class="preview-bar-fill" style="width:88%"></div></div>
+              <span class="preview-bar-val">8.8</span>
+            </div>
+          </div>
+        </div>
+        <div class="preview-terminal">
+          <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">interview --role "Senior SWE" --questions 8</span></div>
+          <div class="t-line"><span class="t-ok">&#10003; CV parsed: 3 projects, leadership experience detected</span></div>
+          <div class="t-line"><span class="t-ok">&#10003; 8 tailored questions generated from JD + resume</span></div>
+          <div class="t-line"><span class="t-ok">&#10003; Session recorded: voice + webcam, 8/8 answers complete</span></div>
+          <div class="t-line"><span class="t-ok">&#10003; AI evaluation complete: batch processed in 12s</span></div>
+          <div class="t-line t-dim">Report ready &middot; avg 8.6 &middot; grade B &middot; 3 strengths, 2 gaps identified</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TRUST BAR ===================== -->
+<section class="trust-section">
+  <p class="trust-label">Candidates targeting roles at</p>
+  <div class="marquee-wrapper">
+    <div class="marquee-track">
+      <span class="marquee-item">Google</span>
+      <span class="marquee-item">Meta</span>
+      <span class="marquee-item">Amazon</span>
+      <span class="marquee-item">Microsoft</span>
+      <span class="marquee-item">Stripe</span>
+      <span class="marquee-item">Figma</span>
+      <span class="marquee-item">Notion</span>
+      <span class="marquee-item">Vercel</span>
+      <span class="marquee-item">Linear</span>
+      <span class="marquee-item">Shopify</span>
+      <span class="marquee-item">Airbnb</span>
+      <span class="marquee-item">Palantir</span>
+      <span class="marquee-item">Anthropic</span>
+      <span class="marquee-item">OpenAI</span>
+      <span class="marquee-item">DeepMind</span>
+      <span class="marquee-item">Google</span>
+      <span class="marquee-item">Meta</span>
+      <span class="marquee-item">Amazon</span>
+      <span class="marquee-item">Microsoft</span>
+      <span class="marquee-item">Stripe</span>
+      <span class="marquee-item">Figma</span>
+      <span class="marquee-item">Notion</span>
+      <span class="marquee-item">Vercel</span>
+      <span class="marquee-item">Linear</span>
+      <span class="marquee-item">Shopify</span>
+      <span class="marquee-item">Airbnb</span>
+      <span class="marquee-item">Palantir</span>
+      <span class="marquee-item">Anthropic</span>
+      <span class="marquee-item">OpenAI</span>
+      <span class="marquee-item">DeepMind</span>
+    </div>
+  </div>
+</section>
+
+<!-- =================== HOW IT WORKS =================== -->
+<section class="lp-section" id="how-it-works">
+  <div class="container">
+    <div class="lp-section-label reveal">
+      <span class="label-tag">The Process</span>
+    </div>
+    <h2 class="lp-section-title reveal reveal-delay-1">Three steps to walk in ready</h2>
+    <p class="lp-section-sub reveal reveal-delay-2">No complicated setup. No generic questions. Just tailored prep that reflects the actual role you want.</p>
+
+    <div class="steps-grid">
+      <div class="steps-connector"></div>
+      <div class="steps-connector steps-connector-2"></div>
+
+      <div class="step-card reveal reveal-delay-1">
+        <div class="step-num">01</div>
+        <div class="step-icon">&#128196;</div>
+        <div class="step-title">Upload Your Materials</div>
+        <p class="step-desc">Drop in your CV and the job description. The AI reads both to understand your background and exactly what the role demands from you.</p>
+      </div>
+
+      <div class="step-card reveal reveal-delay-2">
+        <div class="step-num">02</div>
+        <div class="step-icon">&#127908;</div>
+        <div class="step-title">Answer Like It is Real</div>
+        <p class="step-desc">Questions are read aloud. You answer by voice or by typing. Your webcam records the session. It feels close enough to the real thing to actually prepare you.</p>
+      </div>
+
+      <div class="step-card reveal reveal-delay-3">
+        <div class="step-num">03</div>
+        <div class="step-icon">&#9889;</div>
+        <div class="step-title">Get Honest Feedback</div>
+        <p class="step-desc">The AI evaluates all your answers at once. You get scores, specific gaps, strengths, and a model answer for each question. No vague comments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FEATURES BENTO ================== -->
+<section class="lp-section" style="padding-top:2rem">
+  <div class="container">
+    <div class="lp-section-label reveal">
+      <span class="label-tag">What You Get</span>
+    </div>
+    <h2 class="lp-section-title reveal reveal-delay-1">Built around how interviews actually work</h2>
+    <p class="lp-section-sub reveal reveal-delay-2">Every feature exists for a reason. Nothing that looks good but doesn't help you perform.</p>
+
+    <div class="bento-grid reveal">
+
+      <div class="bento-card bento-1 border-beam">
+        <div class="bento-icon">&#127919;</div>
+        <div class="bento-title">CV-Aware Questions</div>
+        <p class="bento-desc">Questions are generated from your actual CV and the job description. Not templates. Not generic behavioral Qs. Real questions an interviewer would ask you specifically.</p>
+        <div class="bento-visual">
+          <span class="ky">resume_skills</span> = [<span class="vl">"React"</span>, <span class="vl">"System Design"</span>]<br />
+          <span class="ky">jd_requires</span> &nbsp;= [<span class="vl">"API design"</span>, <span class="vl">"team leadership"</span>]<br />
+          <span class="hi">&#10003; generating 8 contextual questions...</span>
+        </div>
+      </div>
+
+      <div class="bento-card bento-2 border-beam">
+        <div class="bento-icon bento-icon-violet">&#127908;</div>
+        <div class="bento-title">Voice and Video Practice</div>
+        <p class="bento-desc">Speech-to-text transcribes your answers in real time. Questions are read aloud via text-to-speech. Webcam records the session. You practice the actual delivery, not just the words.</p>
+        <div class="bento-score-row" style="margin-top:1.75rem">
+          <svg class="bento-score-ring" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="26" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="4"/>
+            <circle cx="32" cy="32" r="26" fill="none" stroke="#38bdf8" stroke-width="4"
+              stroke-dasharray="131 164" stroke-linecap="round" transform="rotate(-90 32 32)"/>
+            <text x="32" y="32" dominant-baseline="central" text-anchor="middle"
+              fill="#38bdf8" font-size="13" font-weight="700" font-family="Space Grotesk, sans-serif">8.4</text>
+          </svg>
+          <div class="bento-score-info">
+            <div class="bento-score-val">Voice transcribed</div>
+            <div class="bento-score-label">Answer captured word for word, session recorded</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bento-card bento-3 border-beam">
+        <div class="bento-icon">&#128203;</div>
+        <div class="bento-title">STAR Method Feedback</div>
+        <p class="bento-desc">For behavioral questions, the AI specifically checks your Situation, Task, Action, and Result structure and tells you what was missing.</p>
+      </div>
+
+      <div class="bento-card bento-4 border-beam">
+        <div class="bento-icon bento-icon-violet">&#9889;</div>
+        <div class="bento-title">Batch Evaluation</div>
+        <p class="bento-desc">All answers are evaluated in a single AI pass. Fast, consistent, and no per-question API limits eating into your free tier.</p>
+      </div>
+
+      <div class="bento-card bento-5 border-beam">
+        <div class="bento-icon">&#128196;</div>
+        <div class="bento-title">Downloadable Report</div>
+        <p class="bento-desc">Export a full text report with scores, gaps, and model answers. Review it offline and track what to fix before the real thing.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ====================== STATS ======================== -->
+<section class="stats-section reveal">
+  <div class="container">
+    <div class="stats-row">
+      <div>
+        <div class="stat-block-val" data-count="8">0</div>
+        <div class="stat-block-label">question categories covered, including technical, behavioral, situational</div>
+      </div>
+      <div>
+        <div class="stat-block-val" data-count-suffix="s">12s</div>
+        <div class="stat-block-label">average time to evaluate all answers via batch AI processing</div>
+      </div>
+      <div>
+        <div class="stat-block-val" data-count="20">0</div>
+        <div class="stat-block-label">minutes per full session, from upload to detailed feedback</div>
+      </div>
+      <div>
+        <div class="stat-block-val">0</div>
+        <div class="stat-block-label">subscriptions needed to start, no credit card required</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== QUOTE BREAK ==================== -->
+<section class="lp-section" style="padding:4rem 0">
+  <div class="container-md" style="text-align:center">
+    <div style="font-size:clamp(1.3rem,3vw,2rem);font-family:var(--font-display);font-weight:600;color:var(--text-bright);line-height:1.4;margin-bottom:1.5rem" class="reveal">
+      "Most people only realize what they should have said after the interview is over."
+    </div>
+    <p style="color:var(--muted);font-size:0.95rem" class="reveal reveal-delay-1">
+      Interview Ace gives you the reps, the feedback, and the model answers before it matters.
+    </p>
+  </div>
+</section>
+
+<!-- ====================== CTA ========================= -->
+<section class="cta-section">
+  <div class="container">
+    <h2 class="cta-title reveal">
+      Walk into your next interview<br />actually prepared.
+    </h2>
+    <p class="cta-sub reveal reveal-delay-1">
+      Upload your CV, pick the role, and start practicing in under two minutes. Free to use, no setup required.
+    </p>
+    <div class="cta-actions reveal reveal-delay-2">
+      <a href="/signup.html" class="btn btn-primary btn-lg btn-shimmer">Create Free Account &rarr;</a>
+      <a href="/app.html" class="btn btn-ghost btn-lg">Try Without Signing Up</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ======================= -->
+<footer class="lp-footer">
+  <div class="container">
+    <div class="lp-footer-inner">
+      <div class="footer-logo">Interview<span style="background:var(--gradient);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">Ace</span></div>
+      <div class="footer-links">
+        <a href="/app.html">Start Interview</a>
+        <a href="/login.html">Sign In</a>
+        <a href="/signup.html">Create Account</a>
+      </div>
+      <p class="footer-copy">Built for candidates who take it seriously.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/config.js"></script>
+<script src="/js/auth.js"></script>
+<script>
+(function () {
+
+  const navLogin     = document.getElementById('navLogin');
+  const navSignup    = document.getElementById('navSignup');
+  const navDashboard = document.getElementById('navDashboard');
+  const navLogout    = document.getElementById('navLogout');
+
+  if (Auth.isLoggedIn()) {
+    navLogin.style.display     = 'none';
+    navSignup.style.display    = 'none';
+    navDashboard.style.display = '';
+    navLogout.style.display    = '';
+  }
+
+  const spotlight = document.getElementById('spotlight');
+  document.addEventListener('mousemove', e => {
+    const x = (e.clientX / window.innerWidth  * 100).toFixed(1);
+    const y = (e.clientY / window.innerHeight * 100).toFixed(1);
+    spotlight.style.setProperty('--mouse-x', x + '%');
+    spotlight.style.setProperty('--mouse-y', y + '%');
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const counterEls = document.querySelectorAll('[data-count]');
+  const counterObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el     = entry.target;
+      const target = parseInt(el.getAttribute('data-count'), 10);
+      const dur    = 1400;
+      const start  = performance.now();
+
+      function tick(now) {
+        const p = Math.min((now - start) / dur, 1);
+        const v = Math.round(p * p * (3 - 2 * p) * target);
+        el.textContent = v;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      counterObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+
+  counterEls.forEach(el => counterObs.observe(el));
+
+})();
+</script>
+</body>
+</html>

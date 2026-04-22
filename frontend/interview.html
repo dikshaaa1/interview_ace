@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interview | Interview Ace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<nav class="dock-nav">
+  <div class="dock-logo"><a href="/index.html">Interview<span>Ace</span></a></div>
+  <div id="questionCounter" style="font-size:0.85rem;color:var(--muted);padding:0.3rem 0.75rem">Question 1 of 8</div>
+  <div class="timer" id="timer" style="padding:0.3rem 0.75rem">0:00</div>
+</nav>
+
+<div class="page-shell">
+  <div class="container" style="max-width:1200px">
+
+    <div class="progress-row" style="margin-bottom:1.5rem">
+      <div class="progress-segments" id="progressSegments"></div>
+    </div>
+
+    <div class="interview-layout">
+
+      <div class="interview-main">
+        <div class="card question-card">
+          <div class="question-type-badge" id="questionTypeBadge">technical</div>
+          <h2 class="question-text" id="questionText">Loading your questions…</h2>
+          <div class="tts-indicator" id="ttsIndicator">
+            <span class="tts-dot"></span>
+            Reading question aloud…
+          </div>
+        </div>
+
+        <div class="card answer-card">
+          <div class="mic-row">
+            <button class="mic-btn" id="micBtn" title="Toggle voice recording">&#127908;</button>
+            <span class="mic-label" id="micLabel">Click to record</span>
+          </div>
+          <textarea
+            id="answerText"
+            class="form-input"
+            placeholder="Your answer will appear here as you speak, or type directly…"
+            rows="7"
+          ></textarea>
+          <div class="submit-row">
+            <button class="btn btn-primary btn-lg" id="submitBtn">
+              <div class="spinner" id="submitSpinner"></div>
+              <span id="submitBtnText">Submit Answer &rarr;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="interview-sidebar">
+        <div class="webcam-card card" style="padding:0">
+          <video id="webcamFeed" autoplay muted playsinline class="webcam-video"></video>
+          <div class="rec-badge" id="recBadge">
+            <span class="rec-dot"></span>REC
+          </div>
+          <div class="camera-fallback" id="cameraFallback">
+            <div style="font-size:2rem">&#128247;</div>
+            <span>Camera not available</span>
+          </div>
+        </div>
+
+        <div class="card" style="padding:1.25rem">
+          <div class="label-tag" style="margin-bottom:0.75rem">Tips</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem">
+            <li style="font-size:0.8rem;color:var(--muted)">&#128338; Take a moment before answering</li>
+            <li style="font-size:0.8rem;color:var(--muted)">&#127919; Use the STAR method for behavioural questions</li>
+            <li style="font-size:0.8rem;color:var(--muted)">&#128222; Speak clearly, voice is transcribed automatically</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="/config.js"></script>
+<script src="/state.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/voice.js"></script>
+<script src="/js/video.js"></script>
+<script src="/js/interview.js"></script>
+</body>
+</html>

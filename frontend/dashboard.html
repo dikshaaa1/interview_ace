@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | Interview Ace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<nav class="dock-nav">
+  <div class="dock-logo"><a href="/index.html">Interview<span>Ace</span></a></div>
+  <a href="/dashboard.html" class="dock-link active">Dashboard</a>
+  <a href="/app.html" class="dock-link">New Interview</a>
+  <button id="logoutBtn" class="dock-link" style="background:none;border:none;font:inherit;cursor:pointer;color:var(--muted)">Logout</button>
+</nav>
+
+<div class="page-shell">
+  <div class="container">
+
+    <div class="dashboard-header">
+      <div>
+        <p class="dashboard-greeting">Good to see you back,</p>
+        <h1 class="dashboard-title" id="userName">Loading…</h1>
+      </div>
+      <a href="/app.html" class="btn btn-primary">+ New Interview</a>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Sessions</div>
+        <div class="stat-value" id="statTotal">0</div>
+        <div class="stat-sub">interviews completed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Average Score</div>
+        <div class="stat-value" id="statAvg">...</div>
+        <div class="stat-sub">out of 10</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Best Score</div>
+        <div class="stat-value" id="statBest">...</div>
+        <div class="stat-sub">personal best</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-header">
+        <h2 class="section-title">Recent Sessions</h2>
+        <a href="/app.html" class="btn btn-ghost btn-sm">Start New &rarr;</a>
+      </div>
+
+      <div id="emptyState" class="empty-state" style="display:none">
+        <div class="empty-state-icon">&#127908;</div>
+        <p>No interviews yet. Start your first practice session.</p>
+        <a href="/app.html" class="btn btn-primary">Start Interview</a>
+      </div>
+
+      <table class="sessions-table" id="sessionsTable">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Questions</th>
+            <th>Score</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="sessionsBody">
+          <tr>
+            <td colspan="4" style="text-align:center;color:var(--muted);padding:2rem">Loading…</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<script src="/config.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/dashboard.js"></script>
+</body>
+</html>

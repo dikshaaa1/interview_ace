@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Results | Interview Ace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+
+<nav class="dock-nav">
+  <div class="dock-logo"><a href="/index.html">Interview<span>Ace</span></a></div>
+  <a href="/dashboard.html" class="dock-link" id="navDashboard" style="display:none">Dashboard</a>
+  <a href="/app.html" class="dock-link">New Interview</a>
+  <button id="logoutBtn" class="dock-link" style="display:none;background:none;border:none;font:inherit;cursor:pointer;color:var(--muted)" onclick="Auth.logout()">Logout</button>
+</nav>
+
+<div class="page-shell">
+  <div class="container-md" id="noData" style="display:none;text-align:center;padding:6rem 1.5rem">
+    <div style="font-size:3rem;margin-bottom:1.5rem">&#128202;</div>
+    <h2 style="margin-bottom:0.75rem">No results found</h2>
+    <p style="color:var(--muted);margin-bottom:2rem">Complete an interview to see your evaluation here.</p>
+    <a href="/app.html" class="btn btn-primary">Start an Interview &rarr;</a>
+  </div>
+
+  <div class="container" id="resultsContent" style="display:none">
+    <div class="results-header">
+      <div class="label-tag" style="margin-bottom:0.75rem">Session Complete</div>
+      <h1>Interview Results</h1>
+      <p>Here's your detailed performance breakdown</p>
+    </div>
+
+    <div class="overall-scores" id="overallScores"></div>
+
+    <div class="results-accordion" id="questionCards"></div>
+
+    <div id="videoSection" class="video-section" style="display:none">
+      <div class="card">
+        <div class="label-tag" style="margin-bottom:1rem">Session Recording</div>
+        <video id="resultVideo" controls></video>
+      </div>
+    </div>
+
+    <div class="results-actions">
+      <button class="btn btn-ghost" id="downloadVideo" style="display:none">&#8595; Download Recording</button>
+      <button class="btn btn-ghost" id="downloadReport">&#8595; Download Report</button>
+      <a href="/app.html" class="btn btn-primary" id="restartBtn">New Interview &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<script src="/config.js"></script>
+<script src="/state.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/results.js"></script>
+<script>
+  (function () {
+    const navDashboard = document.getElementById('navDashboard');
+    const logoutBtn    = document.getElementById('logoutBtn');
+    if (Auth.isLoggedIn()) {
+      navDashboard.style.display = '';
+      logoutBtn.style.display    = '';
+    }
+  })();
+</script>
+</body>
+</html>
